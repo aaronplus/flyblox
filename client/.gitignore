@@ -1,0 +1,8 @@
+node_modules
+.next
+
+next.config.js
+yarn.lock
+.DS_Store
+.env
+package-lock.json

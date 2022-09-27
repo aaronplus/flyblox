@@ -1,0 +1,9 @@
+node_modules
+uploads
+yarn.lock
+package-lock.json
+.env
+package.lock
+package-lock
+.env.development
+config/ca-certificate.crt

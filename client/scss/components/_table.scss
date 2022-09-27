@@ -1,0 +1,35 @@
+// .ant-table-tbody {
+//   tr {
+//     cursor: pointer;
+//     td {
+//       overflow: hidden;
+//       white-space: nowrap;
+//       text-overflow: ellipsis;
+//       // max-width: 2rem;
+//     }
+//   }
+// }
+
+.table-btn-wd {
+  width: 17rem;
+}
+
+.ant-table-wrapper {
+  overflow-x: auto;
+  .anticon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.ant-table-wrapper::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+.ant-table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 10px 10px 2px #fcb800;
+  -webkit-box-shadow: inset 10px 10px 2px #fcb800;
+}

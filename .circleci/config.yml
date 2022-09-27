@@ -1,0 +1,25 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: circleci/node:7
+        steps:
+            - run:
+                working_directory: ~/client
+                name: install-dependencies
+                command: npm install
+            - run:
+                working_directory: ~/server
+                name: install-dependencies
+                command: npm install
+            - deploy:
+                name: digital-ocean
+                command: ssh -o "StrictHostKeyChecking no" $HOST_USER@$HOST_URL "cd ~/bitlyra-new; git pull; cd ~/bitlyra-new/client; npm install; npm run build; cd ~/bitlyra-new/server; npm install;   cd ~/bitlyra-new/admin; npm install; npm run build; pm2 restart bit-backend;pm2 restart bit-frontend;pm2 restart bit-admin;"
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: develop

@@ -1,0 +1,119 @@
+<html>
+
+<head>
+    <style>
+        .table th,
+        .table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+    </style>
+</head>
+
+<body>
+    <table cellpadding="0" cellspacing="0" border="0" width="88%"
+        style="width: 88% !important; min-width: 88%; max-width: 88%;">
+        <tr>
+            <td align="left" valign="top">
+                <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>
+                <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 18px; line-height: 32px;">
+                    <span
+                        style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 18px; line-height: 32px;">
+                        Hi {{ orderData.seller.firstName }},
+                    </span>
+                </font>
+                <div style="height: 20px; line-height: 20px; font-size: 18px;">&nbsp;</div>
+                <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 18px; line-height: 32px;">
+                    <span
+                        style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 18px; line-height: 32px;">
+                        Congratulations you have an order from flyblox.com. Order details below.
+                    </span>
+                </font>
+
+                <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>
+                <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 18px; line-height: 32px;">
+
+                    <span
+                        style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 18px; line-height: 32px;">
+                        {{orderData.shippingAddress.firstName}} {{orderData.shippingAddress.lastName}}<br />
+                        Shipping Address: {{orderData.shippingAddress.street}} {{orderData.shippingAddress.city}},
+                        {{orderData.shippingAddress.state}} {{orderData.shippingAddress.postalCode}}
+                        {{orderData.shippingAddress.country}}
+                    </span>
+                </font>
+
+
+                <div style="height: 20px; line-height: 20px; font-size: 18px;">&nbsp;</div>
+                <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 18px; line-height: 32px;">
+                    <span
+                        style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 18px; line-height: 32px;">
+                        <table class='table  ps-table--shopping-cart ps-table--responsive'
+                            style="width: 100% !important;">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each orderItems}}
+                                <tr>
+                                    {{#with this}}
+                                    <td class="text-center">
+                                        {{ name }}
+
+                                    </td>
+                                    <td class="text-center" data-label='price' className='price'>
+                                        ${{amount}}
+                                    </td>
+                                    <td class="text-center" data-label='qty' className='qty'>
+                                        {{quantity}}
+                                    </td>
+                                    <td class="text-center" data-label='total'>
+                                        <strong>${{total}}</strong>
+                                    </td>
+                                    {{/with}}
+                                </tr>
+
+                                {{/each}}
+
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <strong>Shipping Charges</strong>
+                                    </td>
+                                    <td> ${{orderData.shippingCharges}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="text-right">
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td> ${{orderData.total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </span>
+                </font>
+                <div style="height: 20px; line-height: 20px; font-size: 18px;">&nbsp;</div>
+                <font face="'Source Sans Pro', sans-serif" color="#585858" style="font-size: 18px; line-height: 32px;">
+                    <span
+                        style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #585858; font-size: 18px; line-height: 32px;">
+                        Kind Regards,<br />
+                        Team@Flyblox<br />
+                    </span>
+                </font>
+                <div style="height: 33px; line-height: 33px; font-size: 18px;">&nbsp;</div>
+
+                <div style="height: 75px; line-height: 75px; font-size: 73px;">&nbsp;</div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
