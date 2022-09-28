@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Radio, Upload, Button } from "antd";
+import { Form, Input, Radio, Upload, Button, message } from "antd";
 import {
   CameraTwoTone,
   LoadingOutlined,
@@ -34,6 +34,15 @@ const FormCreateLadingPages = () => {
   const [radioValue, setRadioValue] = useState("left");
   const [addPanel, setAddPanel] = useState(false);
   const [counter, setCounter] = useState(0);
+
+  const beforeUpload = (file) => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
+    }
+    return isJpgOrPng;
+  };
 
   const handleSubmit = async (values) => {
     let data = new FormData();
@@ -94,11 +103,9 @@ const FormCreateLadingPages = () => {
   const handleDrop = (droppedItem) => {
     // Ignore drop outside droppable container
     if (!droppedItem.destination) return;
-    console.log(droppedItem);
     const [reorderedItem] = fileList.splice(droppedItem.source.index, 1);
     // Add dropped item
     fileList.splice(droppedItem.destination.index, 0, reorderedItem);
-    console.log(fileList)
     // Update State
     setFileList(fileList);
   };
@@ -121,8 +128,6 @@ const FormCreateLadingPages = () => {
   const handleClick = () => {
     setCounter(counter + 1);
   };
-
-console.log(fileList)
 
   return (
     <Form form={form} className="ps-form--add" onFinish={handleSubmit}>
@@ -158,13 +163,20 @@ console.log(fileList)
       <div className="upload">
         <div className="form-group" style={{ flex: 0.2 }}>
           <label>Register Panel Background</label>
-          <Form.Item name="thumbnail">
+          <Form.Item name="thumbnail"
+            rules={[
+              {
+                required: true,
+                message: "Please upload panel background image!",
+              },
+            ]}>
             <Upload
               name="thumbnail"
               listType="picture-card"
               className="avatar-uploader"
               showUploadList={false}
               onChange={handleFileChange}
+              beforeUpload={beforeUpload}
             >
               {thumbnail ? (
                 <img
@@ -180,13 +192,6 @@ console.log(fileList)
                 uploadButton
               )}
             </Upload>
-            {/* {imageError ? (
-                        <div role="alert" style={{ color: "red" }}>
-                            Register Panel Background Required!
-                        </div>
-                    ) : (
-                        ""
-                    )} */}
           </Form.Item>
         </div>
       </div>
@@ -264,6 +269,7 @@ console.log(fileList)
                                   listType="picture-card"
                                   className="avatar-uploader"
                                   showUploadList={false}
+                                  beforeUpload={beforeUpload}
                                   onChange={(e) =>
                                     handlePanelImageChange(e, index)
                                   }

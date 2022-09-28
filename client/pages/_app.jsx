@@ -3,6 +3,7 @@ import { wrapper } from '~/store/store'
 import { autoLogin } from '~/store/auth/action'
 import { CookiesProvider } from 'react-cookie'
 import { useDispatch } from 'react-redux'
+import { useRouter } from 'next/router';
 
 import MasterLayout from '~/components/layouts/MasterLayout'
 import '~/public/static/fonts/Linearicons/Font/demo-files/demo.css'
@@ -24,9 +25,14 @@ import '~/scss/electronic.scss'
 
 function App({ Component, pageProps }) {
   const dispatch = useDispatch()
+  const router = useRouter()
   useEffect(() => {
     setTimeout(function () {
-      document.getElementById('__next').classList.add('loaded')
+      if (router.pathname == '/register/[pid]') {
+        document.getElementById('__next').classList.add('loaded', 'register-loaded')
+      } else {
+        document.getElementById('__next').classList.add('loaded')
+      }
     }, 100)
   })
 

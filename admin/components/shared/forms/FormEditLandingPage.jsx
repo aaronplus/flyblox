@@ -1,6 +1,6 @@
 const baseURL = `${process.env.baseURL}`;
 import React, { useState, useEffect } from "react";
-import { Cascader, Form, Input, notification, Upload, Radio, Button } from "antd";
+import { Cascader, Form, Input, notification, Upload, Radio, Button, message } from "antd";
 import { CameraTwoTone, LoadingOutlined, MinusCircleOutlined, MenuOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -54,6 +54,15 @@ const FormEditLandingPage = () => {
             setFileList(landingPage.panel_images)
         }
     }, [landingPage]);
+
+    const beforeUpload = (file) => {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+
+        if (!isJpgOrPng) {
+            message.error('You can only upload JPG/PNG file!');
+        }
+        return isJpgOrPng;
+    };
 
     const handleFileChange = (info) => {
         if (info.file.status === "uploading") {
@@ -199,6 +208,7 @@ const FormEditLandingPage = () => {
                                 className="avatar-uploader"
                                 showUploadList={false}
                                 onChange={handleFileChange}
+                                beforeUpload={beforeUpload}
                             >
                                 {thumbnail ? (
                                     <img
@@ -304,6 +314,7 @@ const FormEditLandingPage = () => {
                                                                             listType="picture-card"
                                                                             className="avatar-uploader"
                                                                             showUploadList={false}
+                                                                            beforeUpload={beforeUpload}
                                                                             onChange={e => handlePanelImageChange(e, index)}
                                                                         >
                                                                             {fileList[index] ? (

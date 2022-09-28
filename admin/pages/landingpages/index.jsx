@@ -21,9 +21,9 @@ const LandingPage = () => {
             />
             <section className='ps-dashboard ps-items-listing'>
                 <div className='ps-section__left'>
-                    <div className='ps-section__header'>
+                    {/* <div className='ps-section__header'>
                         <FormSearchSimple onChange={setTitle_contains} />
-                    </div>
+                    </div> */}
                     <div className='ps-section__content'>
                         <TableLandingPages title_contains={title_contains} />
                     </div>
