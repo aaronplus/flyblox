@@ -39,7 +39,7 @@ const RegisterPanel = ({
                                 className='panel-image'
                                 key={i}
                                 // src={`http://localhost:4000/${img}`}
-                                 src={`${baseURL}/${img}`}
+                                src={`${baseURL}/${img}`}
                                 onClick={handleClick}
                                 alt="alt"
                                 layout="responsive"
@@ -50,15 +50,15 @@ const RegisterPanel = ({
                     </div>
                 )}
             </div>
-            <div className='container background-container' 
-            style={{
-                paddingBottom: '2px',
-                backgroundImage: `url('${baseURL}/${landingpage?.register_panel_background}')`,
-                // backgroundImage: `url('http://localhost:4000/${landingpage?.register_panel_background}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}
-             ref={ref}>
+            <div className='container background-container'
+                style={{
+                    paddingBottom: '2px',
+                    backgroundImage: `url('${baseURL}/${landingpage?.register_panel_background}')`,
+                    // backgroundImage: `url('http://localhost:4000/${landingpage?.register_panel_background}')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+                ref={ref}>
                 <Form
                     className={`register-panel-form--account  
                     ${landingpage?.register_form_location == "left" ? "register-panel-left"
@@ -71,7 +71,7 @@ const RegisterPanel = ({
                     <ul className='ps-tab-list'>
                         <li className='active'>
                             {/* <Link href='/register'> */}
-                                <a>Register</a>
+                            <a>Register</a>
                             {/* </Link> */}
                         </li>
                     </ul>
@@ -190,7 +190,9 @@ const RegisterPanel = ({
                             </div>
                             <div className='form-group submit'>
                                 <button type='submit' className='ps-register-btn ps-btn--fullwidth'
-                                    style={{ backgroundColor: `${landingpage?.register_button_colour}` }}
+                                    style={{
+                                        backgroundColor: `${landingpage?.register_button_colour}`
+                                    }}
                                 >
                                     {landingpage?.register_button_label}
                                 </button>
